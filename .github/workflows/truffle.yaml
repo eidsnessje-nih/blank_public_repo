@@ -23,6 +23,8 @@ jobs:
       uses: trufflesecurity/trufflehog@main
       # uses: trufflesecurity/trufflehog@main
       with:
+        path: .
+        base: main
         extra_args: --results=verified,unknown
 
     - name: Pretend we did a notification
