@@ -10,30 +10,24 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v6
+      with:
+        sparse-checkout: 3
+        fetch-depth: 4
 
     - name: PWD
       shell: bash
       run: |
         pwd;
+        set -xv;
         echo "$GITHUB_WORKSPACE";
         find . -type f -print0 | xargs -0 sha256sum > /tmp/before.out
-
-    # One of these will work
-    - name: TruffleHog Help A
-      uses: trufflesecurity/trufflehog@main
-      with:
-        extra_args: --help
-
-    - name: TruffleHog Help B
-      uses: trufflesecurity/trufflehog@main
-      with:
-        extra_args: ""
 
     - name: TruffleHog OSS
       uses: trufflesecurity/trufflehog@main
       with:
-        path: "$PWD"
+        path: ./
         base: ${{ github.ref_name }}~1
+        head: ${{ github.ref_name }}
         extra_args: filesystem --path=.  --log-level=2 --results=verified,unknown
 
     - name: Pretend we did a notification
