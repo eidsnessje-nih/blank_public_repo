@@ -28,7 +28,7 @@ jobs:
         path: ./
         base: ${{ github.ref_name }}~1
         head: ${{ github.ref_name }}
-        extra_args: --path="$GITHUB_WORKSPACE" --results=verified,unknown
+        extra_args: --results=verified,unknown
 
     - name: TruffleHog OSS B
       uses: trufflesecurity/trufflehog@main
@@ -36,12 +36,12 @@ jobs:
         path: "$GITHUB_WORKSPACE/"
         base: ${{ github.ref_name }}~1
         head: ${{ github.ref_name }}
-        extra_args: --path="$GITHUB_WORKSPACE/.." --results=verified,unknown
+        extra_args: --results=verified,unknown
 
     - name: TruffleHog OSS C
       uses: trufflesecurity/trufflehog@main
       with:
-        path: "$GITHUB_WORKSPACE/"
+        path: "$GITHUB_WORKSPACE/.."
         base: ${{ github.ref_name }}~1
         head: ${{ github.ref_name }}
         extra_args: --results=verified,unknown
