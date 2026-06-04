@@ -18,6 +18,7 @@ jobs:
       shell: bash
       run: |
         pwd;
+        find . -type f -print0 | xargs -0 sha256sum > /tmp/before.out
 
     - name: TruffleHog OSS
       uses: trufflesecurity/trufflehog@main
@@ -25,9 +26,11 @@ jobs:
       with:
         path: .
         base: main
-        extra_args: --results=verified,unknown
+        extra_args: --log-level=2 --results=verified,unknown
 
     - name: Pretend we did a notification
       shell: bash
       run: |
+        find . -type f -print0 | xargs -0 sha256sum > /tmp/after.out
+        diff -u /tmp/before.out  /tmp/after.out
         echo "Note that this information has gone nowhere"
