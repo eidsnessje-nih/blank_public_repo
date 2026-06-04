@@ -11,6 +11,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v6
 
+    - name: get in
+      shell: bash
+      run: |
+        pwd;
+        cd blank_public_repo/blank_public_repo || echo "GH Actions WIP";
+
     - name: TruffleHog OSS
       uses: trufflesecurity/trufflehog@v3.95.5
 
