@@ -9,7 +9,7 @@ jobs:
     steps:
 
     - name: Checkout code
-      uses: actions/checkout@latest
+      uses: actions/checkout@v6
 
     - name: TruffleHog OSS
       uses: trufflesecurity/trufflehog@v3.95.5
