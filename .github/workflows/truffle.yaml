@@ -21,7 +21,7 @@ jobs:
       uses: trufflesecurity/trufflehog@main
       with:
         path: .
-        base: 'main@{1}'
+        base: 'main~2'
         head: main
         extra_args: --log-level=2 --results=verified,unknown
 
